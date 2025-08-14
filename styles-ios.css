@@ -1,0 +1,600 @@
+/* ========================================
+   COMFYUI MOBILE - STYLE iOS NATIF
+   Transformation de l'interface existante en style iOS
+======================================== */
+
+/* Reset et variables iOS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+    /* iOS Native Colors */
+    --ios-background: #f2f2f7;
+    --ios-background-secondary: #ffffff;
+    --ios-background-tertiary: #f2f2f7;
+    --ios-card-background: #ffffff;
+    --ios-separator: rgba(60, 60, 67, 0.29);
+    
+    /* iOS Text Colors */
+    --ios-label: #000000;
+    --ios-label-secondary: rgba(60, 60, 67, 0.6);
+    --ios-label-tertiary: rgba(60, 60, 67, 0.3);
+    
+    /* iOS System Colors */
+    --ios-blue: #007AFF;
+    --ios-green: #34C759;
+    --ios-orange: #FF9500;
+    --ios-red: #FF3B30;
+    --ios-yellow: #FFCC00;
+    --ios-purple: #AF52DE;
+    --ios-pink: #FF2D92;
+    --ios-cyan: #32D74B;
+    
+    /* iOS Control Colors */
+    --ios-control-background: rgba(120, 120, 128, 0.2);
+    --ios-control-background-selected: var(--ios-blue);
+    
+    /* Layout */
+    --tab-bar-height: 83px;
+    --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+    background: var(--ios-background);
+    color: var(--ios-label);
+    line-height: 1.4;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+/* ========================================
+   STRUCTURE PRINCIPALE (.app)
+======================================== */
+.app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* ========================================
+   HEADER iOS Style
+======================================== */
+.header {
+    background: rgba(248, 248, 248, 0.94);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 0.5px solid var(--ios-separator);
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.header h1 {
+    font-size: 34px;
+    font-weight: 700;
+    color: var(--ios-label);
+    margin: 0 0 8px 0;
+    line-height: 1.2;
+}
+
+.connection-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.status-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--ios-red);
+    transition: all 0.3s ease;
+}
+
+.status-indicator.connected {
+    background: var(--ios-green);
+}
+
+.status-text {
+    font-size: 15px;
+    color: var(--ios-label-secondary);
+    font-weight: 500;
+}
+
+/* ========================================
+   MAIN CONTENT
+======================================== */
+.main {
+    flex: 1;
+    padding-bottom: calc(var(--tab-bar-height) + var(--safe-area-bottom) + 20px);
+    min-height: calc(100vh - var(--tab-bar-height) - var(--safe-area-bottom));
+}
+
+/* ========================================
+   TAB CONTENT (Pages des onglets)
+======================================== */
+.tab-content {
+    display: none;
+    padding: 20px;
+    min-height: 100%;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================================
+   SECTIONS iOS (Cartes)
+======================================== */
+.section {
+    background: var(--ios-card-background);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.section h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--ios-label);
+    padding: 16px 16px 12px 16px;
+    margin: 0;
+    border-bottom: 0.5px solid var(--ios-separator);
+}
+
+.section h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ios-label);
+    padding: 12px 16px 8px 16px;
+    margin: 0;
+}
+
+/* ========================================
+   BOUTONS iOS Style
+======================================== */
+.btn, .ios-button {
+    border: none;
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: inherit;
+    text-decoration: none;
+    margin: 4px;
+}
+
+.btn-primary, .ios-button {
+    background: var(--ios-blue);
+    color: white;
+}
+
+.btn-secondary {
+    background: var(--ios-control-background);
+    color: var(--ios-label);
+}
+
+.btn:hover:not(:disabled) {
+    opacity: 0.8;
+}
+
+.btn:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+.btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* Bouton random (🎲) */
+.btn-random {
+    background: var(--ios-orange) !important;
+    color: white !important;
+    padding: 8px 12px !important;
+    min-height: 36px !important;
+    font-size: 16px !important;
+    margin-left: 8px;
+}
+
+/* ========================================
+   INPUTS ET CONTRÔLES iOS
+======================================== */
+.workflow-select, .quick-input, .quick-select, .quick-textarea, 
+.setting-input, .file-input, input, select, textarea {
+    width: 100%;
+    border: none;
+    background: var(--ios-background-tertiary);
+    font-size: 17px;
+    color: var(--ios-label);
+    padding: 12px 16px;
+    border-radius: 8px;
+    outline: none;
+    font-family: inherit;
+    transition: background-color 0.2s ease;
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 16px center;
+    background-repeat: no-repeat;
+    background-size: 16px;
+    padding-right: 48px;
+}
+
+textarea {
+    resize: none;
+    min-height: 80px;
+}
+
+input:focus, select:focus, textarea:focus {
+    background: var(--ios-background-secondary);
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.3);
+}
+
+input::placeholder, textarea::placeholder {
+    color: var(--ios-label-tertiary);
+}
+
+/* ========================================
+   TOGGLE SWITCHES iOS
+======================================== */
+.toggle-switch, .checkbox-container {
+    position: relative;
+    display: inline-block;
+    width: 51px;
+    height: 31px;
+}
+
+.toggle-switch input, .checkbox-container input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider-round, .checkbox-checkmark {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--ios-control-background);
+    transition: .2s;
+    border-radius: 31px;
+}
+
+.toggle-slider-round:before, .checkbox-checkmark:before {
+    position: absolute;
+    content: "";
+    height: 27px;
+    width: 27px;
+    left: 2px;
+    bottom: 2px;
+    background: white;
+    transition: .2s;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+input:checked + .toggle-slider-round, input:checked + .checkbox-checkmark {
+    background: var(--ios-green);
+}
+
+input:checked + .toggle-slider-round:before, input:checked + .checkbox-checkmark:before {
+    transform: translateX(20px);
+}
+
+/* ========================================
+   LAYOUT CONTAINERS
+======================================== */
+.workflow-management, .workflow-actions, .saved-workflows-container,
+.export-import-actions, .setting-group, .param-row {
+    padding: 16px;
+    border-bottom: 0.5px solid var(--ios-separator);
+}
+
+.workflow-management:last-child, .workflow-actions:last-child, 
+.saved-workflows-container:last-child, .export-import-actions:last-child,
+.setting-group:last-child, .param-row:last-child {
+    border-bottom: none;
+}
+
+.param-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 44px;
+}
+
+.param-row.full-width {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+}
+
+.param-row label {
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--ios-label);
+    flex-shrink: 0;
+    min-width: 100px;
+}
+
+.param-row .quick-input, .param-row .quick-select {
+    flex: 1;
+    margin: 0;
+}
+
+/* ========================================
+   PROGRESS BAR iOS
+======================================== */
+.progress-bar, .ios-progress {
+    width: 100%;
+    height: 3px;
+    background: var(--ios-control-background);
+    border-radius: 1.5px;
+    overflow: hidden;
+    margin: 12px 0;
+}
+
+.progress-fill, .ios-progress-fill {
+    height: 100%;
+    background: var(--ios-blue);
+    width: 0%;
+    transition: width 0.3s ease;
+    border-radius: 1.5px;
+}
+
+/* ========================================
+   GALERIE D'IMAGES
+======================================== */
+.gallery-grid, .image-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 2px;
+    margin-top: 10px;
+}
+
+.gallery-grid img, .image-gallery img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.gallery-grid img:hover, .image-gallery img:hover {
+    opacity: 0.8;
+}
+
+/* ========================================
+   TAB BAR (Navigation en bas)
+======================================== */
+.bottom-nav, .tabs {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: calc(var(--tab-bar-height) + var(--safe-area-bottom));
+    background: rgba(248, 248, 248, 0.94);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 0.5px solid var(--ios-separator);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    padding: 4px 0 var(--safe-area-bottom) 0;
+    z-index: 1000;
+}
+
+.tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 8px;
+    min-width: 60px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    background: none;
+    border: none;
+    color: rgba(60, 60, 67, 0.6);
+}
+
+.tab.active {
+    color: var(--ios-blue);
+}
+
+.tab-icon {
+    width: 30px;
+    height: 30px;
+    margin-bottom: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.tab-label {
+    font-size: 10px;
+    font-weight: 400;
+    text-align: center;
+    line-height: 12px;
+}
+
+/* ========================================
+   ÉTATS DE STATUT
+======================================== */
+.connection-result, .availability-status {
+    font-size: 13px;
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: 6px;
+    background: var(--ios-control-background);
+    color: var(--ios-label-secondary);
+}
+
+.connection-result.success, .availability-status.available {
+    background: rgba(52, 199, 89, 0.2);
+    color: var(--ios-green);
+}
+
+.connection-result.error, .availability-status.error {
+    background: rgba(255, 59, 48, 0.2);
+    color: var(--ios-red);
+}
+
+/* ========================================
+   DARK MODE iOS
+======================================== */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --ios-background: #000000;
+        --ios-background-secondary: #1c1c1e;
+        --ios-background-tertiary: #2c2c2e;
+        --ios-card-background: #1c1c1e;
+        --ios-separator: rgba(84, 84, 88, 0.65);
+        
+        --ios-label: #ffffff;
+        --ios-label-secondary: rgba(235, 235, 245, 0.6);
+        --ios-label-tertiary: rgba(235, 235, 245, 0.3);
+        
+        --ios-control-background: rgba(120, 120, 128, 0.16);
+        --ios-blue: #0a84ff;
+    }
+    
+    .header, .bottom-nav, .tabs {
+        background: rgba(28, 28, 30, 0.94);
+    }
+    
+    .tab:not(.active) {
+        color: rgba(235, 235, 245, 0.6);
+    }
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+======================================== */
+@media (max-width: 480px) {
+    .bottom-nav, .tabs {
+        padding: 2px 0 var(--safe-area-bottom) 0;
+    }
+    
+    .tab-icon {
+        width: 28px;
+        height: 28px;
+        font-size: 22px;
+    }
+    
+    .tab-label {
+        font-size: 9px;
+    }
+    
+    .header h1 {
+        font-size: 28px;
+    }
+    
+    .tab-content {
+        padding: 16px;
+    }
+    
+    .header {
+        padding: 16px;
+    }
+}
+
+/* ========================================
+   SAFE AREA SUPPORT (iPhone)
+======================================== */
+@supports (padding: max(0px)) {
+    .bottom-nav, .tabs {
+        padding-bottom: max(var(--safe-area-bottom), 20px);
+    }
+    
+    .main {
+        padding-bottom: calc(var(--tab-bar-height) + max(var(--safe-area-bottom), 20px) + 20px);
+    }
+}
+
+/* ========================================
+   ANIMATIONS & TRANSITIONS iOS
+======================================== */
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.btn, .tab, input, select, textarea {
+    -webkit-appearance: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* Loading states */
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: var(--ios-label-secondary);
+    font-size: 15px;
+}
+
+.no-result, .no-workflow, .no-images, .no-loras {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    color: var(--ios-label-tertiary);
+    font-size: 15px;
+    text-align: center;
+}
+
+/* Préservation des fonctionnalités existantes */
+.workflow-info, .result-container, .generation-progress, 
+.quick-generation-progress, .preview-container {
+    margin: 16px 0;
+}
+
+.workflow-json {
+    background: var(--ios-background-tertiary);
+    border-radius: 8px;
+    padding: 12px;
+    font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+    font-size: 12px;
+    overflow-x: auto;
+}

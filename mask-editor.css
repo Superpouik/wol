@@ -1,0 +1,282 @@
+/* ========================================
+   MASK EDITOR STYLES
+   ======================================== */
+
+/* Modal principale */
+.mask-editor-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh; /* Dynamic viewport height pour PWA iOS */
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 30000;
+    display: flex;
+    flex-direction: column;
+    padding: env(safe-area-inset-top, 20px) env(safe-area-inset-right, 16px) env(safe-area-inset-bottom, 16px) env(safe-area-inset-left, 16px);
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* Contenu principal */
+.mask-editor-content {
+    background: var(--ios-background-grouped);
+    border-radius: var(--ios-corner-radius-large);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: var(--ios-shadow-large);
+    border: 0.5px solid var(--ios-separator);
+    overflow: hidden;
+}
+
+/* Header */
+.mask-editor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--ios-spacing-16);
+    border-bottom: 0.5px solid var(--ios-separator);
+    background: var(--ios-background-secondary);
+    border-radius: var(--ios-corner-radius-large) var(--ios-corner-radius-large) 0 0;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    gap: var(--ios-spacing-8);
+}
+
+.mask-editor-header h3 {
+    margin: 0;
+    color: var(--ios-label);
+    font-size: var(--ios-title3-size);
+    font-weight: var(--ios-title3-weight);
+}
+
+.mask-editor-actions {
+    display: flex;
+    gap: var(--ios-spacing-6);
+    flex-wrap: nowrap;
+}
+
+.mask-editor-actions .btn {
+    font-size: 12px;
+    padding: var(--ios-spacing-6) var(--ios-spacing-10);
+    min-width: 70px;
+    white-space: nowrap;
+}
+
+/* Body */
+.mask-editor-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow-y: auto;
+    height: 100%;
+}
+
+/* Canvas Container */
+.mask-canvas-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--ios-background-tertiary);
+    border-radius: var(--ios-corner-radius-medium);
+    padding: var(--ios-spacing-16);
+    margin: var(--ios-spacing-12);
+    flex-shrink: 0;
+    width: fit-content;
+    align-self: center;
+    max-width: calc(100vw - 24px);
+    box-sizing: border-box;
+}
+
+.mask-canvas-container canvas {
+    border: 2px solid var(--ios-separator);
+    border-radius: var(--ios-corner-radius-medium);
+    background: white;
+    display: block;
+    cursor: crosshair;
+    touch-action: none; /* Important pour éviter le scroll sur mobile */
+}
+
+.canvas-overlay-info {
+    text-align: center;
+    margin-top: var(--ios-spacing-8);
+    padding: var(--ios-spacing-8);
+    background: var(--ios-background-tertiary);
+    border-radius: var(--ios-corner-radius-medium);
+    border: 1px solid var(--ios-separator);
+}
+
+.canvas-overlay-info small {
+    color: var(--ios-label-secondary);
+    font-size: var(--ios-caption2-size);
+}
+
+/* Tools Panel */
+.mask-tools {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ios-spacing-12);
+    padding: var(--ios-spacing-12);
+    background: var(--ios-background-grouped);
+    border-top: 0.5px solid var(--ios-separator);
+    flex-shrink: 0;
+}
+
+.tool-section {
+    background: var(--ios-background-secondary);
+    border-radius: var(--ios-corner-radius-medium);
+    padding: var(--ios-spacing-16);
+    border: 0.5px solid var(--ios-separator);
+}
+
+.tool-section h4 {
+    margin: 0 0 var(--ios-spacing-12) 0;
+    color: var(--ios-label);
+    font-size: var(--ios-subheadline-size);
+    font-weight: var(--ios-subheadline-weight);
+}
+
+.tool-buttons {
+    display: flex;
+    gap: var(--ios-spacing-8);
+    flex-wrap: wrap;
+}
+
+.tool-btn {
+    flex: 1;
+    min-width: 80px;
+    text-align: center;
+    padding: var(--ios-spacing-10) var(--ios-spacing-16);
+    border-radius: var(--ios-corner-radius-medium);
+    font-size: var(--ios-body-size);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tool-btn.active {
+    background: var(--ios-blue) !important;
+    color: white !important;
+    border-color: var(--ios-blue) !important;
+}
+
+/* Sliders */
+.tool-slider {
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 6px;
+    background: var(--ios-separator);
+    border-radius: 3px;
+    outline: none;
+    margin: var(--ios-spacing-8) 0;
+}
+
+.tool-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    background: var(--ios-blue);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.tool-slider::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+    background: var(--ios-blue);
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Responsive pour mobile */
+@media (max-width: 768px) {
+    .mask-editor-modal {
+        padding: env(safe-area-inset-top, 8px) env(safe-area-inset-right, 8px) env(safe-area-inset-bottom, 8px) env(safe-area-inset-left, 8px);
+    }
+    
+    .mask-editor-header {
+        padding: var(--ios-spacing-12);
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .mask-editor-header h3 {
+        font-size: var(--ios-headline-size);
+        text-align: center;
+        margin-bottom: var(--ios-spacing-8);
+    }
+    
+    .mask-editor-actions {
+        justify-content: center;
+    }
+    
+    .mask-editor-actions .btn {
+        font-size: 11px;
+        padding: var(--ios-spacing-4) var(--ios-spacing-8);
+        min-width: 60px;
+    }
+    
+    .mask-canvas-container {
+        margin: var(--ios-spacing-8);
+        padding: var(--ios-spacing-8);
+        max-width: calc(100vw - 16px);
+        width: fit-content;
+    }
+    
+    .mask-tools {
+        padding: var(--ios-spacing-8);
+    }
+    
+    .tool-section {
+        padding: var(--ios-spacing-12);
+    }
+    
+    .tool-buttons {
+        gap: var(--ios-spacing-8);
+    }
+    
+    .tool-btn {
+        font-size: 14px;
+        padding: var(--ios-spacing-8) var(--ios-spacing-12);
+        flex: 1;
+        min-width: 120px;
+    }
+}
+
+/* États de visibilité */
+.mask-editor-modal[style*="none"] {
+    display: none !important;
+}
+
+.mask-editor-modal[style*="flex"] {
+    display: flex !important;
+}
+
+/* Animation d'ouverture */
+.mask-editor-modal {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.mask-editor-modal.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Debug helper */
+.debug-visible {
+    border: 2px solid red !important;
+    background: rgba(255, 0, 0, 0.1) !important;
+}

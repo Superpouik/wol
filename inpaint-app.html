@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>ComfyUI Inpainting - Mobile</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="ComfyUI Inpaint">
+    <meta name="theme-color" content="#1a1a1a">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles-improved.css">
+    <link rel="stylesheet" href="mask-editor.css">
+    
+    <style>
+        /* Styles spécifiques app inpainting */
+        .inpaint-app-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: env(safe-area-inset-top, 20px) var(--ios-spacing-16) var(--ios-spacing-16);
+            background: var(--ios-background-grouped);
+            border-bottom: 0.5px solid var(--ios-separator);
+        }
+        
+        .inpaint-app-title {
+            font-size: var(--ios-title1-size);
+            font-weight: var(--ios-title1-weight);
+            color: var(--ios-label);
+            margin: 0;
+        }
+        
+        .back-to-main {
+            padding: var(--ios-spacing-8) var(--ios-spacing-16);
+            background: var(--ios-blue);
+            color: white;
+            border: none;
+            border-radius: var(--ios-corner-radius-medium);
+            text-decoration: none;
+            font-size: var(--ios-body-size);
+        }
+        
+        .inpaint-container {
+            padding: var(--ios-spacing-16);
+            padding-bottom: env(safe-area-inset-bottom, 20px);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .status-header {
+            display: flex;
+            align-items: center;
+            gap: var(--ios-spacing-8);
+            margin-bottom: var(--ios-spacing-16);
+            padding: var(--ios-spacing-12);
+            background: var(--ios-background-secondary);
+            border-radius: var(--ios-corner-radius-medium);
+        }
+        
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--ios-red);
+        }
+        
+        .status-indicator.connected {
+            background: var(--ios-green);
+        }
+        
+        .status-text {
+            color: var(--ios-label);
+            font-size: var(--ios-body-size);
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="inpaint-app-header">
+            <h1 class="inpaint-app-title">🖌️ Inpainting</h1>
+            <a href="index.html" class="back-to-main">← Retour</a>
+        </header>
+        
+        <!-- Status -->
+        <div class="status-header">
+            <div class="status-indicator" id="statusIndicator"></div>
+            <span class="status-text" id="statusText">Connexion...</span>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="inpaint-container">
+            <!-- Checkpoint -->
+            <div class="section-content collapsible-section">
+                <div class="section-header" onclick="handleHeaderClick(event, 'checkpointContent', this)">
+                    <h3>📦 Checkpoint</h3>
+                    <button class="collapse-btn" onclick="event.stopPropagation(); toggleSectionCollapse('checkpointContent', this)" title="Réduire/Agrandir">
+                        <span class="collapse-icon">▼</span>
+                    </button>
+                </div>
+                <div class="section-content-inner" id="checkpointContent">
+                    <div class="param-row">
+                        <label>Modèle :</label>
+                        <select id="inpaint_checkpoint" class="quick-select">
+                            <option value="">Chargement...</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image & Masque -->
+            <div class="section-content collapsible-section">
+                <div class="section-header" onclick="handleHeaderClick(event, 'imageContent', this)">
+                    <h3>🖼️ Image & Masque</h3>
+                    <button class="collapse-btn" onclick="event.stopPropagation(); toggleSectionCollapse('imageContent', this)" title="Réduire/Agrandir">
+                        <span class="collapse-icon">▼</span>
+                    </button>
+                </div>
+                <div class="section-content-inner" id="imageContent">
+                    <div class="param-row full-width">
+                        <label>Image à modifier :</label>
+                        <div class="image-upload-container">
+                            <input type="file" id="image_input" accept="image/*">
+                            <label for="image_input" class="upload-label">
+                                📷 Choisir une image
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="image_preview" style="display: none;">
+                        <div class="image-display">
+                            <div style="position: relative; display: inline-block;">
+                                <img id="image_display" src="" alt="Image à traiter" style="max-width: 100%; height: auto; border-radius: 8px;">
+                                <canvas id="mask_preview" style="position: absolute; top: 0; left: 0; opacity: 0.6; pointer-events: none; display: none;"></canvas>
+                            </div>
+                        </div>
+                        <div class="image-controls">
+                            <button class="btn btn-primary" id="edit_mask_btn">
+                                ✏️ Éditer le masque
+                            </button>
+                            <button class="btn btn-secondary" id="clear_mask_btn">
+                                🧹 Effacer le masque
+                            </button>
+                            <button class="btn btn-secondary" id="remove_image_btn">
+                                🗑️ Supprimer l'image
+                            </button>
+                        </div>
+                        <div id="mask_status" style="display: none;">
+                            <p style="color: var(--ios-green); text-align: center; margin-top: var(--ios-spacing-8);">
+                                ✅ Masque créé
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paramètres -->
+            <div class="section-content collapsible-section">
+                <div class="section-header" onclick="handleHeaderClick(event, 'paramsContent', this)">
+                    <h3>⚙️ Paramètres</h3>
+                    <button class="collapse-btn" onclick="event.stopPropagation(); toggleSectionCollapse('paramsContent', this)" title="Réduire/Agrandir">
+                        <span class="collapse-icon">▼</span>
+                    </button>
+                </div>
+                <div class="section-content-inner" id="paramsContent">
+                    <div class="param-row">
+                        <label>Grow mask by :</label>
+                        <input type="number" id="grow_mask" class="quick-input" value="15" min="0" max="100">
+                        <span class="param-unit">px</span>
+                    </div>
+                    
+                    <div class="prompt-section">
+                        <div class="prompt-input-group">
+                            <label>✨ Prompt positif</label>
+                            <textarea id="prompt_positive" class="quick-textarea" placeholder="Décrivez ce que vous voulez..."></textarea>
+                        </div>
+                        <div class="prompt-input-group">
+                            <label>🚫 Prompt négatif</label>
+                            <textarea id="prompt_negative" class="quick-textarea" placeholder="Ce que vous ne voulez pas..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="sampler-params">
+                        <div class="param-row seed-row">
+                            <label>Seed:</label>
+                            <div class="seed-input-container">
+                                <input type="number" id="seed" class="quick-input">
+                                <button class="btn-random" id="random_seed">🎲</button>
+                            </div>
+                        </div>
+                        
+                        <div class="param-row">
+                            <label>Steps:</label>
+                            <input type="number" id="steps" class="quick-input" value="20" min="1" max="150">
+                        </div>
+                        
+                        <div class="param-row">
+                            <label>CFG:</label>
+                            <input type="number" id="cfg" class="quick-input" value="8" step="0.1" min="1" max="30">
+                        </div>
+                        
+                        <div class="param-row">
+                            <label>Denoise:</label>
+                            <input type="number" id="denoise" class="quick-input" value="1" step="0.01" min="0" max="1">
+                        </div>
+                        
+                        <div class="param-row">
+                            <label>Sampler:</label>
+                            <select id="sampler" class="quick-select">
+                                <option value="uni_pc_bh2">uni_pc_bh2</option>
+                                <option value="euler_ancestral">Euler Ancestral</option>
+                                <option value="euler">Euler</option>
+                                <option value="dpmpp_2m">DPM++ 2M</option>
+                                <option value="ddim">DDIM</option>
+                            </select>
+                        </div>
+                        
+                        <div class="param-row">
+                            <label>Scheduler:</label>
+                            <select id="scheduler" class="quick-select">
+                                <option value="normal">Normal</option>
+                                <option value="simple">Simple</option>
+                                <option value="karras">Karras</option>
+                                <option value="exponential">Exponential</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Génération -->
+            <div class="generate-section">
+                <button id="generate_btn" class="btn btn-primary" disabled>
+                    🖌️ Générer Inpainting
+                </button>
+                <div class="generation-progress" id="progress" style="display: none;">
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <div class="progress-text">Inpainting en cours...</div>
+                </div>
+            </div>
+
+            <!-- Résultat -->
+            <div class="section">
+                <h2>🖼️ Résultat</h2>
+                <div id="result" class="result-container">
+                    <p class="no-result">Aucun inpainting effectué</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Mask Editor -->
+    <div id="maskEditorModal" class="mask-editor-modal" style="display: none;">
+        <div class="mask-editor-content">
+            <div class="mask-editor-header">
+                <h3>🖌️ Éditeur de Masque</h3>
+                <div class="mask-editor-actions">
+                    <button class="btn btn-primary" id="save_mask">✅ Sauvegarder</button>
+                    <button class="btn btn-secondary" id="cancel_mask">❌ Annuler</button>
+                </div>
+            </div>
+            
+            <div class="mask-editor-body">
+                <!-- Canvas -->
+                <div class="mask-canvas-container">
+                    <canvas id="maskCanvas" width="512" height="512"></canvas>
+                </div>
+                
+                <!-- Outils -->
+                <div class="mask-tools">
+                    <div class="tool-section">
+                        <h4>🛠️ Outils</h4>
+                        <div class="tool-buttons">
+                            <button class="btn btn-primary tool-btn active" data-tool="brush" id="brush_tool">
+                                🖌️ Pinceau
+                            </button>
+                            <button class="btn btn-secondary tool-btn" data-tool="eraser" id="eraser_tool">
+                                🧽 Gomme
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="tool-section">
+                        <h4>📏 Taille: <span id="brush_size_value">20px</span></h4>
+                        <input type="range" id="brush_size" min="1" max="50" value="20" class="tool-slider">
+                    </div>
+                    
+                    <div class="tool-section">
+                        <h4>💧 Opacité: <span id="brush_opacity_value">80%</span></h4>
+                        <input type="range" id="brush_opacity" min="0.1" max="1" step="0.1" value="0.8" class="tool-slider">
+                    </div>
+                    
+                    <div class="tool-section">
+                        <h4>⚡ Actions</h4>
+                        <div class="tool-buttons">
+                            <button class="btn btn-secondary" id="undo_mask">↶ Annuler</button>
+                            <button class="btn btn-secondary" id="clear_all_mask">🧹 Effacer tout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="inpaint-app.js"></script>
+</body>
+</html>

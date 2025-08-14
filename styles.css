@@ -1,0 +1,1270 @@
+/* ========================================
+   ComfyUI Mobile - App Store Style Design
+   Optimisé pour iPhone 13 Pro (390x844)
+   ======================================== */
+
+/* === DESIGN SYSTEM iOS === */
+:root {
+    /* Colors - iOS System Colors */
+    --ios-background: #000000;
+    --ios-background-secondary: #1C1C1E;
+    --ios-background-tertiary: #2C2C2E;
+    --ios-background-grouped: #000000;
+    --ios-background-secondary-grouped: #1C1C1E;
+    
+    /* iOS Label Colors */
+    --ios-label: #FFFFFF;
+    --ios-label-secondary: #EBEBF5;
+    --ios-label-tertiary: #EBEBF5;
+    --ios-label-quaternary: #EBEBF5;
+    
+    /* iOS Separator */
+    --ios-separator: #38383A;
+    --ios-separator-opaque: #38383A;
+    
+    /* iOS System Blue (Primary) */
+    --ios-blue: #007AFF;
+    --ios-blue-dark: #0A84FF;
+    
+    /* iOS System Colors */
+    --ios-green: #30D158;
+    --ios-red: #FF453A;
+    --ios-orange: #FF9F0A;
+    --ios-yellow: #FFD60A;
+    --ios-purple: #BF5AF2;
+    --ios-pink: #FF375F;
+    --ios-teal: #64D2FF;
+    --ios-indigo: #5E5CE6;
+    
+    /* iOS Fill Colors */
+    --ios-fill-primary: rgba(120, 120, 128, 0.20);
+    --ios-fill-secondary: rgba(120, 120, 128, 0.16);
+    --ios-fill-tertiary: rgba(118, 118, 128, 0.12);
+    --ios-fill-quaternary: rgba(118, 118, 128, 0.08);
+    
+    /* Typography - iOS System Font */
+    --ios-font-large-title: -apple-system-ui-serif, ui-serif, 'SF Pro Display', system-ui, sans-serif;
+    --ios-font-title1: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
+    --ios-font-title2: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
+    --ios-font-title3: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
+    --ios-font-headline: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+    --ios-font-body: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+    --ios-font-callout: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+    --ios-font-subhead: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+    --ios-font-footnote: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+    --ios-font-caption1: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+    --ios-font-caption2: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+    
+    /* iOS Typography Sizes */
+    --ios-large-title-size: 34px;
+    --ios-title1-size: 28px;
+    --ios-title2-size: 22px;
+    --ios-title3-size: 20px;
+    --ios-headline-size: 17px;
+    --ios-body-size: 17px;
+    --ios-callout-size: 16px;
+    --ios-subhead-size: 15px;
+    --ios-footnote-size: 13px;
+    --ios-caption1-size: 12px;
+    --ios-caption2-size: 11px;
+    
+    /* iOS Spacing System */
+    --ios-spacing-2: 2px;
+    --ios-spacing-4: 4px;
+    --ios-spacing-8: 8px;
+    --ios-spacing-12: 12px;
+    --ios-spacing-16: 16px;
+    --ios-spacing-20: 20px;
+    --ios-spacing-24: 24px;
+    --ios-spacing-32: 32px;
+    --ios-spacing-40: 40px;
+    --ios-spacing-48: 48px;
+    
+    /* iOS Corner Radius */
+    --ios-corner-radius-small: 6px;
+    --ios-corner-radius-medium: 10px;
+    --ios-corner-radius-large: 16px;
+    --ios-corner-radius-xlarge: 20px;
+    
+    /* iOS Shadows - App Store Style */
+    --ios-shadow-small: 0 1px 3px rgba(0, 0, 0, 0.12);
+    --ios-shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.15);
+    --ios-shadow-large: 0 8px 25px rgba(0, 0, 0, 0.25);
+    --ios-shadow-card: 0 2px 10px rgba(0, 0, 0, 0.3);
+    
+    /* Touch Targets */
+    --ios-touch-target: 44px;
+    --ios-touch-target-small: 32px;
+    
+    /* Safe Area */
+    --ios-safe-top: env(safe-area-inset-top);
+    --ios-safe-bottom: env(safe-area-inset-bottom);
+    --ios-safe-left: env(safe-area-inset-left);
+    --ios-safe-right: env(safe-area-inset-right);
+}
+
+/* === RESET === */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* === BASE === */
+html {
+    font-size: 17px; /* iOS base font size */
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: var(--ios-font-body);
+    font-size: var(--ios-body-size);
+    line-height: 1.41176; /* iOS line height */
+    color: var(--ios-label);
+    background-color: var(--ios-background-grouped);
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    text-rendering: optimizeLegibility;
+}
+
+/* === APP STRUCTURE === */
+.app {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    display: flex;
+    flex-direction: column;
+    max-width: 100vw;
+    overflow-x: hidden;
+    padding-top: var(--ios-safe-top);
+    padding-bottom: var(--ios-safe-bottom);
+    padding-left: var(--ios-safe-left);
+    padding-right: var(--ios-safe-right);
+}
+
+/* === HEADER - App Store Style === */
+.header {
+    background: var(--ios-background-secondary);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 0.5px solid var(--ios-separator);
+    padding: var(--ios-spacing-16) var(--ios-spacing-20);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header h1 {
+    font-family: var(--ios-font-title1);
+    font-size: var(--ios-title1-size);
+    font-weight: 700;
+    color: var(--ios-label);
+    text-align: center;
+    margin-bottom: var(--ios-spacing-8);
+    letter-spacing: -0.4px; /* iOS title tracking */
+}
+
+.connection-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--ios-font-footnote);
+    font-size: var(--ios-footnote-size);
+    color: var(--ios-label-secondary);
+    gap: var(--ios-spacing-8);
+}
+
+.status-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--ios-orange);
+    animation: pulse-ios 2s ease-in-out infinite;
+}
+
+.status-indicator.connected {
+    background-color: var(--ios-green);
+    animation: none;
+}
+
+.status-indicator.error {
+    background-color: var(--ios-red);
+    animation: none;
+}
+
+@keyframes pulse-ios {
+    0%, 100% { 
+        opacity: 1; 
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 0.6; 
+        transform: scale(1.2);
+    }
+}
+
+/* === MAIN CONTENT === */
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    padding-bottom: calc(var(--ios-touch-target) * 2 + var(--ios-spacing-16)); /* Tab bar space */
+}
+
+/* === TAB CONTENT === */
+.tab-content {
+    display: none;
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: var(--ios-spacing-16);
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+.tab-content.active {
+    display: flex;
+    flex-direction: column;
+}
+
+/* === SECTIONS - App Store Cards === */
+.section {
+    background-color: var(--ios-background-secondary);
+    margin-bottom: var(--ios-spacing-20);
+    border-radius: var(--ios-corner-radius-large);
+    overflow: hidden;
+    box-shadow: var(--ios-shadow-card);
+    border: 0.5px solid var(--ios-separator);
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.section h2 {
+    font-family: var(--ios-font-title3);
+    font-size: var(--ios-title3-size);
+    font-weight: 600;
+    color: var(--ios-label);
+    padding: var(--ios-spacing-20) var(--ios-spacing-20) var(--ios-spacing-12);
+    background: var(--ios-background-secondary);
+    border-bottom: 0.5px solid var(--ios-separator);
+    letter-spacing: -0.2px;
+    display: flex;
+    align-items: center;
+    gap: var(--ios-spacing-8);
+}
+
+.section-content {
+    padding: var(--ios-spacing-20);
+    background-color: var(--ios-background-secondary);
+    border-radius: var(--ios-corner-radius-large);
+    margin-bottom: var(--ios-spacing-20);
+    box-shadow: var(--ios-shadow-card);
+    border: 0.5px solid var(--ios-separator);
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.section-content h3 {
+    font-family: var(--ios-font-title3);
+    font-size: var(--ios-title3-size);
+    font-weight: 600;
+    color: var(--ios-label);
+    margin-bottom: var(--ios-spacing-16);
+    letter-spacing: -0.2px;
+    display: flex;
+    align-items: center;
+    gap: var(--ios-spacing-8);
+}
+
+/* === BUTTONS - iOS Style === */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: var(--ios-touch-target);
+    padding: 0 var(--ios-spacing-20);
+    border: none;
+    border-radius: var(--ios-corner-radius-medium);
+    font-family: var(--ios-font-headline);
+    font-size: var(--ios-headline-size);
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+    white-space: nowrap;
+    gap: var(--ios-spacing-8);
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.btn-primary {
+    background: var(--ios-blue);
+    color: var(--ios-label);
+    box-shadow: var(--ios-shadow-small);
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+    opacity: 0.8;
+    box-shadow: var(--ios-shadow-medium);
+}
+
+.btn-secondary {
+    background: var(--ios-fill-primary);
+    color: var(--ios-label);
+    border: 0.5px solid var(--ios-separator);
+}
+
+.btn-secondary:active {
+    background: var(--ios-fill-secondary);
+    transform: scale(0.98);
+}
+
+.btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.btn-small {
+    min-height: var(--ios-touch-target-small);
+    padding: 0 var(--ios-spacing-16);
+    font-size: var(--ios-subhead-size);
+    border-radius: var(--ios-corner-radius-small);
+}
+
+/* === INPUTS - iOS Style === */
+.setting-input,
+.quick-input,
+.lora-search-input,
+.param-input {
+    width: 100%;
+    min-height: var(--ios-touch-target);
+    padding: var(--ios-spacing-12) var(--ios-spacing-16);
+    background: var(--ios-background-tertiary);
+    border: 0.5px solid var(--ios-separator);
+    border-radius: var(--ios-corner-radius-medium);
+    color: var(--ios-label);
+    font-family: var(--ios-font-body);
+    font-size: var(--ios-body-size);
+    transition: all 0.2s ease;
+    -webkit-appearance: none;
+    appearance: none;
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+.setting-input:focus,
+.quick-input:focus,
+.lora-search-input:focus,
+.param-input:focus {
+    outline: none;
+    border-color: var(--ios-blue);
+    box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.1);
+    background: var(--ios-background-secondary);
+}
+
+.quick-select,
+.lora-select,
+.workflow-select,
+.param-select {
+    width: 100%;
+    min-height: var(--ios-touch-target);
+    padding: var(--ios-spacing-12) var(--ios-spacing-16);
+    background: var(--ios-background-tertiary);
+    border: 0.5px solid var(--ios-separator);
+    border-radius: var(--ios-corner-radius-medium);
+    color: var(--ios-label);
+    font-family: var(--ios-font-body);
+    font-size: var(--ios-body-size);
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+.quick-textarea {
+    min-height: calc(var(--ios-touch-target) * 2);
+    padding: var(--ios-spacing-16);
+    resize: vertical;
+    font-family: var(--ios-font-body);
+    line-height: 1.4;
+}
+
+/* === NAVIGATION - iOS Tab Bar === */
+.tabs.bottom-nav {
+    position: fixed;
+    bottom: var(--ios-safe-bottom);
+    left: var(--ios-safe-left);
+    right: var(--ios-safe-right);
+    z-index: 1000;
+    background: rgba(28, 28, 30, 0.9);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 0.5px solid var(--ios-separator);
+    display: flex;
+    height: calc(var(--ios-touch-target) + var(--ios-spacing-32));
+    padding: var(--ios-spacing-4) var(--ios-spacing-8) var(--ios-spacing-8);
+}
+
+.tab {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--ios-spacing-4);
+    border: none;
+    background: none;
+    color: var(--ios-label-tertiary);
+    font-family: var(--ios-font-caption1);
+    font-size: var(--ios-caption1-size);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-height: var(--ios-touch-target);
+    user-select: none;
+    gap: var(--ios-spacing-2);
+}
+
+.tab-icon {
+    font-size: 24px;
+    margin-bottom: var(--ios-spacing-2);
+    transition: transform 0.2s ease;
+    display: block;
+}
+
+.tab-label {
+    font-size: var(--ios-caption1-size);
+    font-weight: 500;
+    line-height: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.tab.active {
+    color: var(--ios-blue);
+}
+
+.tab.active .tab-icon {
+    transform: scale(1.1);
+}
+
+.tab:active {
+    transform: scale(0.95);
+    opacity: 0.7;
+}
+
+/* === WORKFLOW PARAMETERS - Improved Readability === */
+.workflow-parameters,
+.params-container {
+    background: var(--ios-background-tertiary);
+    border-radius: var(--ios-corner-radius-medium);
+    padding: var(--ios-spacing-16);
+    max-height: 70vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    border: 0.5px solid var(--ios-separator);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.param-group {
+    background: var(--ios-background-secondary);
+    border-radius: var(--ios-corner-radius-medium);
+    padding: var(--ios-spacing-16);
+    margin-bottom: var(--ios-spacing-12);
+    border: 0.5px solid var(--ios-separator);
+    box-shadow: var(--ios-shadow-small);
+}
+
+.param-group:last-child {
+    margin-bottom: 0;
+}
+
+.param-group.bypassed {
+    opacity: 0.5;
+    background: var(--ios-background-tertiary);
+    border: 1px dashed var(--ios-red);
+    position: relative;
+}
+
+.param-group.bypassed::before {
+    content: "BYPASSÉ";
+    position: absolute;
+    top: var(--ios-spacing-8);
+    right: var(--ios-spacing-8);
+    background: var(--ios-red);
+    color: var(--ios-label);
+    padding: var(--ios-spacing-2) var(--ios-spacing-8);
+    border-radius: var(--ios-corner-radius-small);
+    font-size: var(--ios-caption2-size);
+    font-weight: 600;
+    z-index: 1;
+}
+
+.param-label {
+    display: block;
+    margin-bottom: var(--ios-spacing-8);
+    color: var(--ios-blue);
+    font-family: var(--ios-font-subhead);
+    font-size: var(--ios-subhead-size);
+    font-weight: 600;
+}
+
+/* === QUICK GEN SECTIONS === */
+.quick-status {
+    background: var(--ios-background-secondary);
+    border: 0.5px solid var(--ios-separator);
+    border-radius: var(--ios-corner-radius-medium);
+    padding: var(--ios-spacing-20);
+    margin-bottom: var(--ios-spacing-20);
+    text-align: center;
+    box-shadow: var(--ios-shadow-small);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.toggle-section {
+    background: var(--ios-background-secondary);
+    border-radius: var(--ios-corner-radius-large);
+    margin-bottom: var(--ios-spacing-16);
+    overflow: hidden;
+    border: 0.5px solid var(--ios-separator);
+    box-shadow: var(--ios-shadow-card);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.toggle-header {
+    display: flex;
+    align-items: center;
+    gap: var(--ios-spacing-16);
+    padding: var(--ios-spacing-16) var(--ios-spacing-20);
+    background: var(--ios-background-secondary);
+    cursor: pointer;
+    user-select: none;
+    min-height: var(--ios-touch-target);
+    border-bottom: 0.5px solid var(--ios-separator);
+}
+
+.toggle-header h3 {
+    margin: 0;
+    flex: 1;
+    color: var(--ios-label);
+    font-family: var(--ios-font-headline);
+    font-size: var(--ios-headline-size);
+    font-weight: 600;
+}
+
+/* === TOGGLE SWITCH - iOS Style === */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 51px;
+    height: 31px;
+    flex-shrink: 0;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider-round {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(120, 120, 128, 0.16);
+    border-radius: 31px;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border: none;
+}
+
+.toggle-slider-round:before {
+    position: absolute;
+    content: "";
+    height: 27px;
+    width: 27px;
+    left: 2px;
+    bottom: 2px;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15), 0 1px 1px rgba(0, 0, 0, 0.06);
+}
+
+.toggle-switch input:checked + .toggle-slider-round {
+    background-color: var(--ios-green);
+}
+
+.toggle-switch input:checked + .toggle-slider-round:before {
+    transform: translateX(20px);
+}
+
+.toggle-content {
+    padding: var(--ios-spacing-20);
+    background: var(--ios-background-tertiary);
+}
+
+/* === AVAILABILITY STATUS === */
+.availability-status {
+    font-family: var(--ios-font-caption1);
+    font-size: var(--ios-caption1-size);
+    font-weight: 600;
+    padding: var(--ios-spacing-4) var(--ios-spacing-8);
+    border-radius: var(--ios-corner-radius-small);
+    background: var(--ios-fill-tertiary);
+    color: var(--ios-label-secondary);
+}
+
+.availability-status.available {
+    background: rgba(48, 209, 88, 0.15);
+    color: var(--ios-green);
+}
+
+.availability-status.unavailable {
+    background: rgba(255, 69, 58, 0.15);
+    color: var(--ios-red);
+}
+
+/* === PARAMETERS LAYOUT === */
+.quick-params,
+.sampler-params {
+    display: grid;
+    gap: var(--ios-spacing-16);
+    width: 100%;
+}
+
+.param-row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ios-spacing-8);
+    width: 100%;
+}
+
+.param-row label {
+    color: var(--ios-label);
+    font-family: var(--ios-font-subhead);
+    font-size: var(--ios-subhead-size);
+    font-weight: 600;
+}
+
+.seed-input-container {
+    display: flex;
+    gap: var(--ios-spacing-8);
+    align-items: center;
+    width: 100%;
+}
+
+.seed-input-container .quick-input {
+    flex: 1;
+}
+
+.btn-random {
+    min-width: var(--ios-touch-target);
+    min-height: var(--ios-touch-target);
+    background: var(--ios-orange);
+    border: none;
+    border-radius: var(--ios-corner-radius-medium);
+    font-size: 18px;
+    color: var(--ios-label);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.btn-random:active {
+    transform: scale(0.95);
+    opacity: 0.8;
+}
+
+/* === LORA MANAGEMENT - Fixed Layout === */
+.loras-management {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.loras-search-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ios-spacing-12);
+    margin-bottom: var(--ios-spacing-16);
+    width: 100%;
+}
+
+.active-loras-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ios-spacing-12);
+    width: 100%;
+}
+
+.lora-item {
+    background: var(--ios-background-tertiary);
+    border-radius: var(--ios-corner-radius-medium);
+    padding: var(--ios-spacing-16);
+    border: 0.5px solid var(--ios-separator);
+    box-shadow: var(--ios-shadow-small);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.lora-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--ios-spacing-12);
+    gap: var(--ios-spacing-8);
+    width: 100%;
+}
+
+.lora-name {
+    font-family: var(--ios-font-subhead);
+    font-size: var(--ios-subhead-size);
+    font-weight: 600;
+    color: var(--ios-label);
+    flex: 1;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.2;
+    min-width: 0; /* Allow flex shrinking */
+}
+
+.lora-toggle {
+    width: 44px;
+    height: 26px;
+    flex-shrink: 0;
+}
+
+.lora-controls {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ios-spacing-8);
+    width: 100%;
+}
+
+.lora-weight-container {
+    display: flex;
+    align-items: center;
+    gap: var(--ios-spacing-12);
+    width: 100%;
+}
+
+.lora-weight-slider {
+    flex: 1;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--ios-fill-tertiary);
+    outline: none;
+}
+
+.lora-weight-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--ios-blue);
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.lora-weight-value {
+    min-width: 48px;
+    text-align: center;
+    font-family: var(--ios-font-caption1);
+    font-size: var(--ios-caption1-size);
+    font-weight: 600;
+    color: var(--ios-label);
+    background: var(--ios-fill-secondary);
+    padding: var(--ios-spacing-4) var(--ios-spacing-8);
+    border-radius: var(--ios-corner-radius-small);
+    flex-shrink: 0;
+}
+
+/* === GALLERY - App Store Style === */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--ios-spacing-16);
+    padding: 0;
+    width: 100%;
+}
+
+.gallery-item {
+    position: relative;
+    aspect-ratio: 1;
+    border-radius: var(--ios-corner-radius-medium);
+    overflow: hidden;
+    background: var(--ios-background-tertiary);
+    box-shadow: var(--ios-shadow-card);
+    transition: transform 0.2s ease;
+    border: 0.5px solid var(--ios-separator);
+}
+
+.gallery-item:active {
+    transform: scale(0.98);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gallery-item-controls {
+    position: absolute;
+    top: var(--ios-spacing-8);
+    right: var(--ios-spacing-8);
+    display: flex;
+    gap: var(--ios-spacing-4);
+}
+
+.gallery-item-controls .btn {
+    min-width: 32px;
+    min-height: 32px;
+    padding: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 16px;
+    font-size: var(--ios-caption1-size);
+    border: none;
+    color: var(--ios-label);
+    width: auto;
+}
+
+/* === CHECKBOX - iOS Style === */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-family: var(--ios-font-body);
+    font-size: var(--ios-body-size);
+    line-height: 1.4;
+    user-select: none;
+    gap: var(--ios-spacing-12);
+    padding: var(--ios-spacing-8) 0;
+}
+
+.checkbox-container input[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+}
+
+.checkbox-checkmark {
+    height: 22px;
+    width: 22px;
+    background: var(--ios-background-tertiary);
+    border: 2px solid var(--ios-blue);
+    border-radius: 6px;
+    position: relative;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.checkbox-container input[type="checkbox"]:checked ~ .checkbox-checkmark {
+    background: var(--ios-blue);
+    border-color: var(--ios-blue);
+}
+
+.checkbox-checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 6px;
+    top: 2px;
+    width: 6px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.checkbox-container input[type="checkbox"]:checked ~ .checkbox-checkmark:after {
+    display: block;
+}
+
+/* === GENERATION SECTION === */
+.generate-section {
+    background: var(--ios-background-secondary);
+    border-radius: var(--ios-corner-radius-large);
+    padding: var(--ios-spacing-32) var(--ios-spacing-20);
+    text-align: center;
+    margin: var(--ios-spacing-20) 0;
+    border: 0.5px solid var(--ios-separator);
+    box-shadow: var(--ios-shadow-card);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    background: var(--ios-fill-quaternary);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: var(--ios-spacing-8);
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--ios-blue);
+    transition: width 0.3s ease;
+    width: 0%;
+    border-radius: 2px;
+}
+
+.progress-text {
+    font-family: var(--ios-font-footnote);
+    font-size: var(--ios-footnote-size);
+    color: var(--ios-label-secondary);
+    text-align: center;
+}
+
+/* === NO CONTENT STATES === */
+.result-container,
+.no-result,
+.no-workflow,
+.no-images,
+.no-loras {
+    padding: var(--ios-spacing-40) var(--ios-spacing-20);
+    text-align: center;
+    color: var(--ios-label-secondary);
+    font-family: var(--ios-font-body);
+    font-size: var(--ios-body-size);
+    background: var(--ios-background-secondary);
+    border-radius: var(--ios-corner-radius-medium);
+    border: 2px dashed var(--ios-separator);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* === SETTINGS - Improved Layout === */
+.settings-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ios-spacing-20);
+    width: 100%;
+}
+
+.setting-group {
+    background: var(--ios-background-secondary);
+    border-radius: var(--ios-corner-radius-large);
+    padding: var(--ios-spacing-20);
+    border: 0.5px solid var(--ios-separator);
+    box-shadow: var(--ios-shadow-card);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.setting-label {
+    display: block;
+    font-family: var(--ios-font-headline);
+    font-size: var(--ios-headline-size);
+    font-weight: 600;
+    color: var(--ios-label);
+    margin-bottom: var(--ios-spacing-8);
+}
+
+.setting-hint {
+    display: block;
+    font-family: var(--ios-font-footnote);
+    font-size: var(--ios-footnote-size);
+    color: var(--ios-label-secondary);
+    margin-top: var(--ios-spacing-4);
+    line-height: 1.3;
+}
+
+.connection-tests {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ios-spacing-12);
+}
+
+.connection-test {
+    display: flex;
+    align-items: center;
+    gap: var(--ios-spacing-16);
+    padding: var(--ios-spacing-8) 0;
+}
+
+.connection-result {
+    flex: 1;
+    font-family: var(--ios-font-footnote);
+    font-size: var(--ios-footnote-size);
+    color: var(--ios-label-secondary);
+}
+
+.setting-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ios-spacing-12);
+    padding-top: var(--ios-spacing-20);
+    border-top: 0.5px solid var(--ios-separator);
+}
+
+/* === RESPONSIVE - iPhone 13 Pro Optimized === */
+@media (max-width: 390px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .lora-item {
+        padding: var(--ios-spacing-12);
+    }
+    
+    .lora-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--ios-spacing-8);
+    }
+    
+    .tab-label {
+        font-size: 10px;
+    }
+}
+
+/* === MULTI-CONTROLNET INTERFACE === */
+.multi-controlnet-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ios-spacing-16);
+    width: 100%;
+}
+
+.controlnet-item {
+    background: var(--ios-background-tertiary);
+    border-radius: var(--ios-corner-radius-medium);
+    padding: var(--ios-spacing-16);
+    border: 0.5px solid var(--ios-separator);
+    box-shadow: var(--ios-shadow-small);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.controlnet-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--ios-spacing-12);
+    gap: var(--ios-spacing-8);
+    padding-bottom: var(--ios-spacing-8);
+    border-bottom: 0.5px solid var(--ios-separator);
+}
+
+.controlnet-header h4 {
+    margin: 0;
+    font-family: var(--ios-font-headline);
+    font-size: var(--ios-headline-size);
+    font-weight: 600;
+    color: var(--ios-blue);
+}
+
+.controlnet-model-name {
+    font-family: var(--ios-font-caption1);
+    font-size: var(--ios-caption1-size);
+    color: var(--ios-label-secondary);
+    background: var(--ios-fill-secondary);
+    padding: var(--ios-spacing-4) var(--ios-spacing-8);
+    border-radius: var(--ios-corner-radius-small);
+    word-break: break-word;
+    text-align: right;
+}
+
+.controlnet-params {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ios-spacing-12);
+    width: 100%;
+}
+
+.controlnet-model-select,
+.controlnet-strength-input,
+.controlnet-end-input {
+    width: 100%;
+    min-height: var(--ios-touch-target);
+    padding: var(--ios-spacing-12) var(--ios-spacing-16);
+    background: var(--ios-background-secondary);
+    border: 0.5px solid var(--ios-separator);
+    border-radius: var(--ios-corner-radius-medium);
+    color: var(--ios-label);
+    font-family: var(--ios-font-body);
+    font-size: var(--ios-body-size);
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.controlnet-model-select:focus,
+.controlnet-strength-input:focus,
+.controlnet-end-input:focus {
+    outline: none;
+    border-color: var(--ios-blue);
+    box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.1);
+    background: var(--ios-background-secondary);
+}
+
+.controlnet-image-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: var(--ios-touch-target-small);
+    padding: 0 var(--ios-spacing-16);
+    background: var(--ios-fill-primary);
+    border: 0.5px solid var(--ios-separator);
+    border-radius: var(--ios-corner-radius-medium);
+    color: var(--ios-label);
+    font-family: var(--ios-font-callout);
+    font-size: var(--ios-callout-size);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-bottom: var(--ios-spacing-8);
+}
+
+.controlnet-image-btn:active {
+    background: var(--ios-fill-secondary);
+    transform: scale(0.98);
+}
+
+.controlnet-preview {
+    position: relative;
+    max-width: 200px;
+    border-radius: var(--ios-corner-radius-medium);
+    overflow: hidden;
+    border: 0.5px solid var(--ios-separator);
+    box-shadow: var(--ios-shadow-small);
+}
+
+.controlnet-preview-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* === PREVIEW IMAGES SIZING === */
+.preview-image {
+    max-width: 100%;
+    max-height: 400px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    border-radius: var(--ios-corner-radius-medium);
+}
+
+.preview-image-container {
+    max-width: 100%;
+    overflow: hidden;
+    text-align: center;
+}
+
+/* === RESULT IMAGES SIZING === */
+.result-container img,
+#quickGenerationResult img,
+#generationResult img {
+    max-width: 100%;
+    max-height: 500px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    border-radius: var(--ios-corner-radius-medium);
+    border: 0.5px solid var(--ios-separator);
+}
+
+.controlnet-preview .btn-remove-image {
+    position: absolute;
+    top: var(--ios-spacing-4);
+    right: var(--ios-spacing-4);
+    min-width: auto;
+    min-height: auto;
+    padding: var(--ios-spacing-4) var(--ios-spacing-8);
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: none;
+    border-radius: var(--ios-corner-radius-small);
+    color: var(--ios-label);
+    font-size: var(--ios-caption1-size);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.controlnet-preview .btn-remove-image:active {
+    transform: scale(0.95);
+    opacity: 0.8;
+}
+
+/* === UTILITIES === */
+.hidden {
+    display: none !important;
+}
+
+.loading {
+    animation: pulse-ios 2s infinite;
+}
+
+/* === SCROLLBAR - iOS Style === */
+::-webkit-scrollbar {
+    width: 3px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--ios-separator);
+    border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--ios-label-tertiary);
+}
+
+/* === MOTION PREFERENCES === */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* === SAFE AREA ADJUSTMENTS === */
+@supports (padding: max(0px)) {
+    .app {
+        padding-top: max(var(--ios-safe-top), var(--ios-spacing-16));
+        padding-bottom: max(var(--ios-safe-bottom), var(--ios-spacing-16));
+        padding-left: max(var(--ios-safe-left), 0px);
+        padding-right: max(var(--ios-safe-right), 0px);
+    }
+    
+    .tabs.bottom-nav {
+        bottom: max(var(--ios-safe-bottom), 0px);
+        left: max(var(--ios-safe-left), 0px);
+        right: max(var(--ios-safe-right), 0px);
+    }
+}

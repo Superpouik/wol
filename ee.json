@@ -1,0 +1,475 @@
+{
+  "1": {
+    "inputs": {
+      "ckpt_name": "hyperRealisticWood_hyperRealisticWood.safetensors",
+      "prompt": "",
+      "example": "[none]"
+    },
+    "class_type": "CheckpointLoader|pysssss",
+    "_meta": {
+      "title": "Checkpoint Loader 🐍"
+    }
+  },
+  "3": {
+    "inputs": {
+      "PowerLoraLoaderHeaderWidget": {
+        "type": "PowerLoraLoaderHeaderWidget"
+      },
+      "lora_1": {
+        "on": true,
+        "lora": "zy_Amateur_Photo_v1.safetensors",
+        "strength": 0.65
+      },
+      "lora_2": {
+        "on": true,
+        "lora": "Skin Color_alpha1.0_rank4_noxattn_250steps.safetensors",
+        "strength": 0.25
+      },
+      "lora_3": {
+        "on": true,
+        "lora": "dark.safetensors",
+        "strength": 0.3
+      },
+      "lora_4": {
+        "on": false,
+        "lora": "Expressive_H-000001.safetensors",
+        "strength": 0.1
+      },
+      "lora_5": {
+        "on": true,
+        "lora": "realism_lora.safetensors",
+        "strength": 0.15
+      },
+      "lora_6": {
+        "on": false,
+        "lora": "skin texture style v5.safetensors",
+        "strength": 0.5
+      },
+      "lora_7": {
+        "on": true,
+        "lora": "insta\\Instagram_Selfie_SDXL.safetensors",
+        "strength": 0.6
+      },
+      "➕ Add Lora": "",
+      "model": [
+        "1",
+        0
+      ],
+      "clip": [
+        "32",
+        0
+      ]
+    },
+    "class_type": "Power Lora Loader (rgthree)",
+    "_meta": {
+      "title": "Power Lora Loader (rgthree)"
+    }
+  },
+  "4": {
+    "inputs": {
+      "aspect": "6:5",
+      "direction": "portrait",
+      "shortside": 768,
+      "batch_size": 1
+    },
+    "class_type": "Empty Latent by Ratio (WLSH)",
+    "_meta": {
+      "title": "Empty Latent by Ratio (WLSH)"
+    }
+  },
+  "7": {
+    "inputs": {
+      "seed": 1,
+      "steps": 10,
+      "cfg": 2.5,
+      "sampler_name": "euler_ancestral",
+      "scheduler": "normal",
+      "denoise": 1,
+      "preview_method": "auto",
+      "vae_decode": "false",
+      "model": [
+        "3",
+        0
+      ],
+      "positive": [
+        "44",
+        0
+      ],
+      "negative": [
+        "45",
+        0
+      ],
+      "latent_image": [
+        "4",
+        0
+      ],
+      "optional_vae": [
+        "1",
+        2
+      ]
+    },
+    "class_type": "KSampler (Efficient)",
+    "_meta": {
+      "title": "KSampler (Efficient)"
+    }
+  },
+  "8": {
+    "inputs": {
+      "upscale_method": "nearest-exact",
+      "scale_by": 1.6000000000000003,
+      "samples": [
+        "7",
+        3
+      ]
+    },
+    "class_type": "LatentUpscaleBy",
+    "_meta": {
+      "title": "Upscale Latent By"
+    }
+  },
+  "9": {
+    "inputs": {
+      "seed": 960091793511882,
+      "steps": 15,
+      "cfg": 8,
+      "sampler_name": "euler_ancestral",
+      "scheduler": "normal",
+      "denoise": 0.25000000000000006,
+      "preview_method": "auto",
+      "vae_decode": "true",
+      "model": [
+        "7",
+        0
+      ],
+      "positive": [
+        "7",
+        1
+      ],
+      "negative": [
+        "7",
+        2
+      ],
+      "latent_image": [
+        "8",
+        0
+      ],
+      "optional_vae": [
+        "7",
+        4
+      ]
+    },
+    "class_type": "KSampler (Efficient)",
+    "_meta": {
+      "title": "KSampler (Efficient)"
+    }
+  },
+  "13": {
+    "inputs": {
+      "vae_name": "pppanimixVAE_XL.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "Load VAE"
+    }
+  },
+  "15": {
+    "inputs": {
+      "model_name": "sam_vit_b_01ec64.pth",
+      "device_mode": "AUTO"
+    },
+    "class_type": "SAMLoader",
+    "_meta": {
+      "title": "SAMLoader (Impact)"
+    }
+  },
+  "16": {
+    "inputs": {
+      "model_name": "bbox/face_yolov8m.pt"
+    },
+    "class_type": "UltralyticsDetectorProvider",
+    "_meta": {
+      "title": "UltralyticsDetectorProvider"
+    }
+  },
+  "17": {
+    "inputs": {
+      "model_name": "bbox/face_yolov8m.pt"
+    },
+    "class_type": "UltralyticsDetectorProvider",
+    "_meta": {
+      "title": "UltralyticsDetectorProvider"
+    }
+  },
+  "18": {
+    "inputs": {
+      "images": [
+        "29",
+        1
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "19": {
+    "inputs": {
+      "upscale_method": "nearest-exact",
+      "scale_by": 1.7000000000000004,
+      "image": [
+        "29",
+        2
+      ]
+    },
+    "class_type": "ImageScaleBy",
+    "_meta": {
+      "title": "Upscale Image By"
+    }
+  },
+  "20": {
+    "inputs": {
+      "image": [
+        "19",
+        0
+      ]
+    },
+    "class_type": "GetImageSizeAndCount",
+    "_meta": {
+      "title": "Rez Face Out"
+    }
+  },
+  "21": {
+    "inputs": {
+      "images": [
+        "19",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "Preview Image"
+    }
+  },
+  "22": {
+    "inputs": {
+      "output": "",
+      "source": [
+        "20",
+        2
+      ]
+    },
+    "class_type": "Display Any (rgthree)",
+    "_meta": {
+      "title": "Display Any (rgthree) HEIGHT"
+    }
+  },
+  "23": {
+    "inputs": {
+      "output": "",
+      "source": [
+        "20",
+        1
+      ]
+    },
+    "class_type": "Display Any (rgthree)",
+    "_meta": {
+      "title": "Display Any (rgthree) WIDTH"
+    }
+  },
+  "24": {
+    "inputs": {
+      "method": "mkl",
+      "strength": 0.15000000000000002,
+      "image_ref": [
+        "31",
+        0
+      ],
+      "image_target": [
+        "29",
+        0
+      ]
+    },
+    "class_type": "ColorMatch",
+    "_meta": {
+      "title": "Color Match"
+    }
+  },
+  "25": {
+    "inputs": {
+      "temperature": -25,
+      "hue": -5,
+      "brightness": 0,
+      "contrast": -9,
+      "saturation": 0,
+      "gamma": 1.2000000000000002,
+      "image": [
+        "24",
+        0
+      ]
+    },
+    "class_type": "ColorCorrect",
+    "_meta": {
+      "title": "ColorCorrect"
+    }
+  },
+  "26": {
+    "inputs": {
+      "noise_aug_strength": 0.015000000000000003,
+      "seed": 869691406382174,
+      "image": [
+        "25",
+        0
+      ]
+    },
+    "class_type": "ImageNoiseAugmentation",
+    "_meta": {
+      "title": "Image Noise Augmentation"
+    }
+  },
+  "27": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "26",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
+  },
+  "29": {
+    "inputs": {
+      "guide_size": 832,
+      "guide_size_for": true,
+      "max_size": 1216,
+      "seed": 809981055942822,
+      "steps": 15,
+      "cfg": 5,
+      "sampler_name": "euler_ancestral",
+      "scheduler": "normal",
+      "denoise": 0.5000000000000001,
+      "feather": 5,
+      "noise_mask": true,
+      "force_inpaint": true,
+      "bbox_threshold": 0.5000000000000001,
+      "bbox_dilation": 10,
+      "bbox_crop_factor": 3,
+      "sam_detection_hint": "mask-area",
+      "sam_dilation": 0,
+      "sam_threshold": 0.9300000000000002,
+      "sam_bbox_expansion": 0,
+      "sam_mask_hint_threshold": 0.7000000000000002,
+      "sam_mask_hint_use_negative": "False",
+      "drop_size": 10,
+      "wildcard": "",
+      "cycle": 1,
+      "inpaint_model": false,
+      "noise_mask_feather": 20,
+      "tiled_encode": true,
+      "tiled_decode": true,
+      "image": [
+        "31",
+        0
+      ],
+      "model": [
+        "9",
+        0
+      ],
+      "clip": [
+        "3",
+        1
+      ],
+      "vae": [
+        "13",
+        0
+      ],
+      "positive": [
+        "9",
+        1
+      ],
+      "negative": [
+        "9",
+        2
+      ],
+      "bbox_detector": [
+        "17",
+        0
+      ],
+      "sam_model_opt": [
+        "15",
+        0
+      ],
+      "segm_detector_opt": [
+        "16",
+        1
+      ]
+    },
+    "class_type": "FaceDetailer",
+    "_meta": {
+      "title": "FaceDetailer"
+    }
+  },
+  "31": {
+    "inputs": {
+      "samples": [
+        "9",
+        3
+      ],
+      "vae": [
+        "1",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "32": {
+    "inputs": {
+      "stop_at_clip_layer": -2,
+      "clip": [
+        "1",
+        1
+      ]
+    },
+    "class_type": "CLIPSetLastLayer",
+    "_meta": {
+      "title": "CLIP Set Last Layer"
+    }
+  },
+  "44": {
+    "inputs": {
+      "ascore": 6.000000000000001,
+      "width": 832,
+      "height": 1216,
+      "text": "selfie, tanned skin, mexicano latina woman, 45 inches, 18 years old, wached pink hair, (short bob haircut), natural black eyes, soft (freckles:-0.3), glossy lips, dark-toned eyeliner, defined makeup, tight waist, (massive hips), massive back, huge thighs, rounded ass, (small:0.1) breasts, (grin:0.4),Wearing a sleek black [bike] shorts with white top and high fitted boots, RF 35mm ((f/1.2)), instagram, cinematic lighting, day light, 4k, A hyper-detailed 3D render, ",
+      "clip": [
+        "1",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncodeSDXLRefiner",
+    "_meta": {
+      "title": "CLIPTextEncodeSDXLRefiner"
+    }
+  },
+  "45": {
+    "inputs": {
+      "ascore": 6.000000000000001,
+      "width": 832,
+      "height": 1216,
+      "text": "(((text))), (watermark), (logo), big breasts, medium breasts,, , (worst quality, low quality), (nsf), logo, blurry face, clipping, bad face, deformed hands, (bad hands), bangs, front bangs, bad feet, extra toes, extra fingers, strabismus, hat, top hat, ((kid)), chibi, ((child)), bad_hands, fewer digits, extra digits, mullet, ((makeup)), bad eyes, ugly face, mutated hands, mutated face, fair skin, light skin, tanlines, make-up, facial painting, face painting, undercut, braids, barrette, abs, tits out, nipples out, (lace), easynegative, 3D render, cgi, tits, nsfw, large breast, tattoed, piercing, ribs,",
+      "clip": [
+        "1",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncodeSDXLRefiner",
+    "_meta": {
+      "title": "CLIPTextEncodeSDXLRefiner"
+    }
+  }
+}
