@@ -1,16 +1,16 @@
 #!/bin/bash
 
 echo "========================================"
-echo "  ComfyUI Browser - Démarrage"
+echo "  ComfyUI Browser GTK - Démarrage"
 echo "========================================"
 echo ""
 
-# Vérifier si node_modules existe
-if [ ! -d "node_modules" ]; then
-    echo "Installation des dépendances..."
-    npm install
-    echo ""
+# Vérifier si les dépendances sont installées
+if ! python3 -c "import gi" 2>/dev/null; then
+    echo "Installation des dépendances requises..."
+    echo "Veuillez exécuter: ./install.sh"
+    exit 1
 fi
 
 echo "Démarrage de l'application..."
-npm start
+python3 comfyui-browser.py
