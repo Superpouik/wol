@@ -1,13 +1,10 @@
 # Dependencies
 node_modules/
 package-lock.json
-yarn.lock
 
-# Build output
+# Build
 dist/
 build/
-
-# Electron
 out/
 
 # Logs
@@ -22,4 +19,3 @@ Thumbs.db
 .vscode/
 .idea/
 *.swp
-*.swo

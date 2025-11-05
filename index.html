@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ComfyUI Browser</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            width: 350px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #999;
+            font-size: 12px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .presets {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .preset-btn {
+            flex: 1;
+            padding: 6px;
+            background: #f5f5f5;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .preset-btn:hover {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .btn-connect {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 10px;
+        }
+
+        .btn-connect:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-connect:active {
+            transform: translateY(0);
+        }
+
+        .info {
+            margin-top: 20px;
+            padding: 12px;
+            background: #f0f4ff;
+            border-left: 3px solid #667eea;
+            border-radius: 6px;
+            font-size: 12px;
+            color: #555;
+        }
+
+        .info strong {
+            color: #667eea;
+        }
+
+        .version {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 10px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚡ ComfyUI Browser</h1>
+        <p class="subtitle">Navigateur stable et performant</p>
+
+        <div class="form-group">
+            <label for="serverUrl">Adresse du serveur ComfyUI</label>
+            <input
+                type="text"
+                id="serverUrl"
+                placeholder="http://localhost:8188"
+                value="http://localhost:8188"
+            >
+            <div class="presets">
+                <button class="preset-btn" onclick="setPreset('http://localhost:8188')">
+                    🏠 Local
+                </button>
+                <button class="preset-btn" onclick="setPreset('http://192.168.1.100:8188')">
+                    🌐 LAN
+                </button>
+                <button class="preset-btn" onclick="setPreset('https://comfyui.example.com')">
+                    ☁️ Remote
+                </button>
+            </div>
+        </div>
+
+        <button class="btn-connect" onclick="connect()">
+            Se connecter
+        </button>
+
+        <div class="info">
+            <strong>💡 Conseil :</strong> Assurez-vous que ComfyUI est démarré avant de vous connecter.
+        </div>
+
+        <div class="version">
+            v2.0 - Stable Edition
+        </div>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>
