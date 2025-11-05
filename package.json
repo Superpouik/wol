@@ -1,0 +1,33 @@
+{
+  "name": "comfyui-browser",
+  "version": "2.0.0",
+  "description": "Navigateur ultra-stable pour ComfyUI",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "build:win": "electron-builder --win",
+    "build:linux": "electron-builder --linux"
+  },
+  "keywords": ["comfyui", "browser", "stable"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1"
+  },
+  "build": {
+    "appId": "com.comfyui.browser",
+    "productName": "ComfyUI Browser",
+    "directories": {
+      "output": "dist"
+    },
+    "linux": {
+      "target": "AppImage",
+      "category": "Utility"
+    },
+    "win": {
+      "target": "nsis"
+    }
+  }
+}
