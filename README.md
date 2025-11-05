@@ -42,20 +42,44 @@ npm start
 ## 🎯 Fonctionnalités
 
 ✅ **Interface dédiée** - Un seul but : accéder à ComfyUI
-✅ **Performances optimisées** - Fluide même pendant les générations
-✅ **Accélération GPU** - Utilise l'accélération matérielle
+✅ **Performances ULTRA** - Fluide même pendant les générations intensives
+✅ **165 Hz natif** - Taux de rafraîchissement maximal
+✅ **Accélération GPU maximale** - Tous les flags de performance activés
 ✅ **Connexions récentes** - Historique des 5 dernières connexions
 ✅ **Multi-plateforme** - Windows, Linux, macOS
+✅ **Gestion mémoire optimisée** - Garbage collection intelligent
 
-## ⚙️ Optimisations intégrées
+## ⚙️ Optimisations ULTRA-PERFORMANCE intégrées
 
-Le navigateur utilise plusieurs optimisations pour garantir des performances maximales :
+Ce navigateur est configuré pour des performances maximales, sans compromis :
 
-- **Accélération matérielle GPU**
-- **Frame rate 60 FPS**
-- **Zero-copy rendering**
-- **Cache désactivé** pour éviter les problèmes de WebSocket
-- **CORS désactivé** pour la compatibilité avec ComfyUI
+### 🚀 Rendu & Affichage
+- **Frame rate 165 Hz** - Taux de rafraîchissement maximal
+- **VSync désactivé** - Pas de limitation GPU
+- **Throttling désactivé** - Aucune limitation en arrière-plan
+- **Accélération matérielle complète** - GPU utilisé à 100%
+- **Zero-copy rendering** - Copie mémoire minimale
+- **Canvas 2D accéléré** - Rendu graphique optimisé
+- **Décodage vidéo matériel** - VAAPI sur Linux
+
+### 💾 Mémoire & Performance
+- **4 GB de heap V8** - Large espace mémoire pour JavaScript
+- **Garbage collection exposé** - Nettoyage mémoire proactif
+- **Cache désactivé** - Pas de ralentissement WebSocket
+- **Nettoyage périodique** - Cache vidé toutes les 5 minutes
+- **Priorité GPU haute performance** - Force la carte graphique dédiée
+
+### 🌐 Réseau & Compatibilité
+- **CORS désactivé** - Compatibilité totale avec ComfyUI
+- **HTTP2 désactivé** - Meilleure compatibilité WebSocket
+- **QUIC activé** - Protocole réseau moderne
+- **Pas de limitation de requêtes** - Débit maximal
+
+### 🎨 Optimisations CSS injectées
+- **Hardware acceleration** sur tous les éléments
+- **Transform 3D** pour forcer le GPU
+- **Will-change optimisé** - Pre-rendering intelligent
+- **Image rendering optimisé** - Qualité maximale
 
 ## 🏗️ Compiler l'application
 

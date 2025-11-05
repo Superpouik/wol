@@ -4,7 +4,7 @@
   "description": "Navigateur dédié pour ComfyUI - Génération d'images et vidéos",
   "main": "main.js",
   "scripts": {
-    "start": "electron .",
+    "start": "electron . --js-flags=\"--expose-gc --max-old-space-size=4096\"",
     "build": "electron-builder",
     "build:win": "electron-builder --win",
     "build:mac": "electron-builder --mac",
